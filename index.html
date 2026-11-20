@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drogaleste — Painel Executivo &amp; Ranking SP 2026</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dlBlue: '#004A99',
+            dlNavy: '#0A2E5C',
+            dlRed: '#D9232E',
+            dlSoft: '#F3F6FA'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #F3F6FA; color: #1E293B; }
+    .tab-btn.active { background-color: #004A99; color: #FFFFFF; box-shadow: 0 2px 6px rgba(0, 74, 153, 0.25); }
+    .tab-btn:not(.active) { color: #334155; }
+    .tab-btn:not(.active):hover { background-color: #E2E8F0; }
+    .fade-in { animation: fadeIn 0.22s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    input[type="range"] { accent-color: #004A99; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- HEADER INSTITUCIONAL DROGALESTE -->
+  <header class="bg-gradient-to-r from-dlNavy via-dlBlue to-blue-700 text-white shadow-md sticky top-0 z-30 border-b-4 border-dlRed">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow shrink-0">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <rect x="10" y="3" width="8" height="22" rx="2.5" fill="#D9232E"/>
+            <rect x="3" y="10" width="22" height="8" rx="2.5" fill="#004A99"/>
+            <rect x="10" y="10" width="8" height="8" fill="#0A2E5C"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg sm:text-xl font-extrabold tracking-tight">DROGALESTE</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider bg-dlRed px-2 py-0.5 rounded-full">Dossiê SP 2026</span>
+          </div>
+          <p class="text-xs text-blue-100">Painel Executivo · Ranking de Unidades, Fluxo GPS &amp; Inteligência Comercial</p>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-1.5 bg-white/95 p-1 rounded-xl shadow-inner overflow-x-auto" aria-label="Navegação Principal">
+        <button type="button" data-tab="visao-geral" class="tab-btn active px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition">Visão Geral</button>
+        <button type="button" data-tab="ranking" class="tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition">Ranking SP</button>
+        <button type="button" data-tab="faturamento" class="tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition">Faturamento &amp; Mix</button>
+        <button type="button" data-tab="estrategia" class="tab-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition">Estratégia &amp; Fontes</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex-1">
+
+    <!-- ==================== ABA 1: VISÃO GERAL ==================== -->
+    <section id="tab-visao-geral" class="space-y-6 fade-in">
+      <!-- KPI CARDS -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 border-t-4 border-t-dlBlue">
+          <div class="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase">
+            <span>Lojas Próprias</span>
+            <i data-lucide="store" class="w-4 h-4 text-dlBlue"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-dlNavy mt-1">105+</div>
+          <p class="text-xs text-slate-500 mt-1">Ativas em Jun/2026 · Meta 10–12 novas/ano</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 border-t-4 border-t-dlRed">
+          <div class="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase">
+            <span>Melhor Nota SP</span>
+            <i data-lucide="award" class="w-4 h-4 text-dlRed"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-dlRed mt-1">5,0 ★</div>
+          <p class="text-xs text-slate-500 mt-1">Drogaleste Santos · 166 avaliações</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 border-t-4 border-t-emerald-600">
+          <div class="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase">
+            <span>Receita Top 10 (Est.)</span>
+            <i data-lucide="trending-up" class="w-4 h-4 text-emerald-600"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-slate-800 mt-1">R$ 520–860k</div>
+          <p class="text-xs text-slate-500 mt-1">Por loja/mês · Benchmark Abrafarma: R$ 820k</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 border-t-4 border-t-amber-500">
+          <div class="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase">
+            <span>Reputação Digital</span>
+            <i data-lucide="shield-check" class="w-4 h-4 text-amber-500"></i>
+          </div>
+          <div class="text-2xl sm:text-3xl font-extrabold text-dlNavy mt-1">RA 1000</div>
+          <p class="text-xs text-slate-500 mt-1">Selo máximo no Reclame Aqui</p>
+        </div>
+      </div>
+
+      <!-- DESTAQUE: PÓDIO DAS CAMPEÃS -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-lg font-extrabold text-dlNavy">Destaques da Auditoria Google Maps (27 Unidades em SP)</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Clique em qualquer card para abrir o dossiê da unidade (endereço, fluxo GPS e faturamento estimado).</p>
+          </div>
+          <button type="button" id="btn-go-ranking" class="inline-flex items-center gap-1.5 text-xs font-bold text-dlBlue hover:text-dlNavy bg-blue-50 px-3 py-2 rounded-xl transition self-start sm:self-auto">
+            <span>Ver Ranking Completo</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="podium-cards"></div>
+      </div>
+
+      <!-- RAIO-X CORPORATIVO E GOVERNANÇA -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200 space-y-4">
+          <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="building-2" class="w-5 h-5 text-dlBlue"></i>
+            <h2 class="text-lg font-extrabold text-dlNavy">Raio-X Corporativo, Donos &amp; Governança</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div class="bg-dlSoft rounded-xl p-4 border border-slate-200/80">
+              <div class="text-xs font-bold uppercase text-dlBlue mb-1">Origem &amp; Controle Familiar</div>
+              <p class="text-slate-700 leading-relaxed">Fundada em <strong>1991</strong> no Conj. José Bonifácio (extremo leste de SP) pelos quatro irmãos da <strong>família Sansana</strong>: <strong>Djalma, Edson, Milton e Valter</strong>. 100% lojas próprias e expansão orgânica.</p>
+            </div>
+            <div class="bg-dlSoft rounded-xl p-4 border border-slate-200/80">
+              <div class="text-xs font-bold uppercase text-dlBlue mb-1">Liderança &amp; CNPJ Matriz</div>
+              <p class="text-slate-700 leading-relaxed"><strong>Milton Sansana</strong> (Presidente) e <strong>Thiago Sansana</strong> (CEO). Matriz <strong>DROGA LESTE LTDA.</strong> (CNPJ <code class="text-xs bg-white px-1 py-0.5 rounded border">71.813.612/0001-41</code>, Itaquera), com <strong>Simone Diacov Sansana</strong> no QSA desde 1996.</p>
+            </div>
+            <div class="bg-dlSoft rounded-xl p-4 border border-slate-200/80">
+              <div class="text-xs font-bold uppercase text-dlRed mb-1">Nova Bandeira: Livva Farma</div>
+              <p class="text-slate-700 leading-relaxed">Criada em 2 anos com a <strong>Future Brand</strong>, com piloto no <strong>Tatuapé (2026)</strong> para superar o regionalismo da marca e escalar para novas zonas, mantendo a força da categoria infantil.</p>
+            </div>
+            <div class="bg-dlSoft rounded-xl p-4 border border-slate-200/80">
+              <div class="text-xs font-bold uppercase text-dlRed mb-1">Profissionalização 2027 &amp; Estrela Botica</div>
+              <p class="text-slate-700 leading-relaxed">Unificação societária/jurídica em <strong>2027</strong> para abrir até 6 lojas simultâneas por praça, junto ao selo interno <strong>Estrela Botica</strong> (inspirado no Guia Michelin para farmácias).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-dlNavy to-dlBlue text-white rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider bg-white/15 px-2.5 py-1 rounded-full mb-3">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Presença em SP
+            </div>
+            <h3 class="text-lg font-extrabold leading-snug">Domínio na Zona Leste + Expansão Metropolitana e Litoral</h3>
+            <p class="text-xs sm:text-sm text-blue-100 mt-2 leading-relaxed">65% da rede concentra-se na Zona Leste de SP (Itaquera, Guaianases, Artur Alvim e Penha — mais de 500 mil habitantes), somada a 4 lojas na Zona Norte e operações em Guarulhos, Santo André, Itaquaquecetuba, Ferraz de Vasconcelos, Diadema, Mauá, Carapicuíba e Santos.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-2.5 pt-3 border-t border-white/15 text-center">
+            <div class="bg-white/10 rounded-xl p-2.5">
+              <div class="text-lg font-extrabold">+37% / +17%</div>
+              <div class="text-[11px] text-blue-100">Crescimento 2022 / 2023</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-2.5">
+              <div class="text-lg font-extrabold">+15%</div>
+              <div class="text-[11px] text-blue-100">Meta Receita 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABA 2: RANKING SP ==================== -->
+    <section id="tab-ranking" class="hidden space-y-5 fade-in">
+      <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-extrabold text-dlNavy">Ranking Interativo das Melhores Unidades — Estado &amp; Capital de SP</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Classificação por Score Bayesiano (equilibra nota Google Maps e volume de avaliações). Base auditada em 19/11/2026.</p>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-full">Nota 5,0: Santos (166), Guarulhos 109 (15) e Santo André 114 (11)</span>
+          </div>
+        </div>
+
+        <!-- CONTROLES DE FILTRO E BUSCA -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 pt-2 border-t border-slate-100">
+          <div class="lg:col-span-4 relative">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input id="search-input" type="text" placeholder="Buscar por loja, bairro, cidade ou avenida..." class="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-dlBlue">
+          </div>
+
+          <div class="lg:col-span-3 flex gap-1.5 bg-slate-100 p-1 rounded-xl">
+            <button type="button" data-region="all" class="region-btn flex-1 text-xs font-bold py-1.5 px-2 rounded-lg bg-white text-dlNavy shadow-sm transition">Todas</button>
+            <button type="button" data-region="capital" class="region-btn flex-1 text-xs font-bold py-1.5 px-2 rounded-lg text-slate-600 transition">Capital SP</button>
+            <button type="button" data-region="gsp-litoral" class="region-btn flex-1 text-xs font-bold py-1.5 px-2 rounded-lg text-slate-600 transition">GSP/Litoral</button>
+          </div>
+
+          <div class="lg:col-span-3">
+            <select id="sort-select" class="w-full py-2 px-3 text-sm border border-slate-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-dlBlue font-medium text-slate-700">
+              <option value="score">Ordenar: Score Bayesiano (Geral)</option>
+              <option value="rating">Ordenar: Melhor Nota (★)</option>
+              <option value="reviews">Ordenar: Mais Avaliações (Fluxo)</option>
+              <option value="revenue">Ordenar: Maior Faturamento Est.</option>
+            </select>
+          </div>
+
+          <div class="lg:col-span-2 flex items-center justify-between sm:justify-end gap-2 bg-slate-50 px-3 py-2 rounded-xl border border-slate-200">
+            <label for="toggle-24h" class="text-xs font-bold text-slate-700 cursor-pointer select-none">Apenas 24h</label>
+            <input id="toggle-24h" type="checkbox" class="w-4 h-4 accent-dlBlue cursor-pointer">
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span id="results-count">Mostrando 15 unidades</span>
+          <button type="button" id="btn-reset-filters" class="text-dlBlue font-semibold hover:underline">Limpar filtros</button>
+        </div>
+
+        <!-- TABELA RESPONSIVA -->
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-dlNavy text-white text-xs uppercase tracking-wider">
+                <th class="py-3 px-3 w-12">#</th>
+                <th class="py-3 px-3">Unidade &amp; Cidade</th>
+                <th class="py-3 px-3">Endereço</th>
+                <th class="py-3 px-3 text-right">Nota</th>
+                <th class="py-3 px-3 text-right">Aval.</th>
+                <th class="py-3 px-3">Turno</th>
+                <th class="py-3 px-3 text-right">Faturamento Est./Mês</th>
+                <th class="py-3 px-3 text-center">Detalhes</th>
+              </tr>
+            </thead>
+            <tbody id="ranking-tbody" class="divide-y divide-slate-200 bg-white"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABA 3: FATURAMENTO & MIX ==================== -->
+    <section id="tab-faturamento" class="hidden space-y-6 fade-in">
+      <!-- SIMULADOR INTERATIVO -->
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-lg font-extrabold text-dlNavy">Simulador Paramétrico de Faturamento por Loja</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Teste ao vivo o impacto do fluxo GPS, turno 24h e mix de produtos sobre a receita estimada da unidade (ancorado em benchmarks Abrafarma/Fecofar).</p>
+          </div>
+          <span class="text-xs font-bold bg-blue-50 text-dlBlue px-3 py-1 rounded-full self-start">Base Regional: R$ 450 mil/mês</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                <span>Fator Fluxo GPS &amp; Volume de Reviews</span>
+                <span id="sim-gps-val" class="text-dlBlue">1.25x (Alto)</span>
+              </div>
+              <input id="sim-gps" type="range" min="0.85" max="1.45" step="0.05" value="1.25" class="w-full">
+              <div class="flex justify-between text-[11px] text-slate-400"><span>0.85x Bairro calmo</span><span>1.15x Médio-alto</span><span>1.45x Polo 24h (Av. Itaquera)</span></div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                <span>Fator Horário de Operação</span>
+                <span id="sim-hours-val" class="text-dlBlue">1.25x (24 horas)</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" data-hours="1.00" class="hours-btn py-2 px-3 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition">16h Padrão (1.00x)</button>
+                <button type="button" data-hours="1.10" class="hours-btn py-2 px-3 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition">Estendido (1.10x)</button>
+                <button type="button" data-hours="1.25" class="hours-btn py-2 px-3 rounded-xl text-xs font-bold border-2 border-dlBlue bg-blue-50 text-dlBlue transition">24 Horas (1.25x)</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                <span>Fator Mix (GLP-1, Nutracêuticos, HPC) &amp; Renda Local</span>
+                <span id="sim-mix-val" class="text-dlBlue">1.10x</span>
+              </div>
+              <input id="sim-mix" type="range" min="0.95" max="1.25" step="0.05" value="1.10" class="w-full">
+              <div class="flex justify-between text-[11px] text-slate-400"><span>0.95x Popular</span><span>1.10x Corredor Comercial</span><span>1.25x Renda A–B (Santos/Tatuapé)</span></div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-gradient-to-br from-dlNavy to-dlBlue text-white rounded-2xl p-5 space-y-3">
+            <div class="text-xs font-bold uppercase tracking-wider text-blue-200">Receita Estimada da Unidade</div>
+            <div class="text-3xl sm:text-4xl font-extrabold" id="sim-monthly">R$ 773 mil/mês</div>
+            <div class="text-xs text-blue-100" id="sim-range">Faixa provável (±10%): R$ 696k – R$ 850k/mês</div>
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-white/15">
+              <div>
+                <div class="text-[11px] text-blue-200">Projeção Anual</div>
+                <div class="text-lg font-extrabold" id="sim-annual">R$ 9,28 mi</div>
+              </div>
+              <div>
+                <div class="text-[11px] text-blue-200">vs. Média Abrafarma (820k)</div>
+                <div class="text-lg font-extrabold" id="sim-abrafarma">94%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÁFICOS CHART.JS -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+          <h3 class="text-base font-extrabold text-dlNavy mb-1">Top 10 Faturamento Mensal Estimado (R$ mil)</h3>
+          <p class="text-xs text-slate-500 mb-3">Comparação entre as lojas líderes da Drogaleste e a média nacional Abrafarma (R$ 820k/mês).</p>
+          <div class="relative h-72">
+            <canvas id="chart-revenue"></canvas>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+          <h3 class="text-base font-extrabold text-dlNavy mb-1">Top 5 Medicamentos de Marca em Receita no Brasil (IQVIA)</h3>
+          <p class="text-xs text-slate-500 mb-3">Categoria movimenta R$ 19,6 bilhões (50% puxados por diabetes e obesidade / GLP-1).</p>
+          <div class="relative h-72">
+            <canvas id="chart-iqvia"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- PILARES DE MAIOR SAÍDA -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 border-l-4 border-l-dlBlue">
+          <div class="text-xs font-bold uppercase text-dlBlue">Liderança Drogaleste (Exame)</div>
+          <div class="text-2xl font-extrabold text-dlNavy mt-1">56%</div>
+          <div class="text-sm font-bold text-slate-800 mt-0.5">Nutracêuticos &amp; Vitaminas</div>
+          <p class="text-xs text-slate-600 mt-1.5">Categoria de altíssima margem. No Brasil (IQVIA até jun/2026), alimentos esportivos crescem +20% e vitaminas +9%.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 border-l-4 border-l-dlRed">
+          <div class="text-xs font-bold uppercase text-dlRed">Liderança Drogaleste (Exame)</div>
+          <div class="text-2xl font-extrabold text-dlNavy mt-1">45%</div>
+          <div class="text-sm font-bold text-slate-800 mt-0.5">Cuidados Sênior / Idosos</div>
+          <p class="text-xs text-slate-600 mt-1.5">Fraldas geriátricas, uso contínuo e suplementação. Cuidados ao paciente crescem +15% no varejo farma (IQVIA).</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 border-l-4 border-l-emerald-600">
+          <div class="text-xs font-bold uppercase text-emerald-700">Mix Varejo Farma (Abrafarma)</div>
+          <div class="text-2xl font-extrabold text-dlNavy mt-1">68% / 32%</div>
+          <div class="text-sm font-bold text-slate-800 mt-0.5">Medicamentos vs. HPC &amp; Infantil</div>
+          <p class="text-xs text-slate-600 mt-1.5">Ticket médio digital Abrafarma de R$ 141,76. Dermocosméticos (R$ 12,3 bi/ano) e linha infantil ampliam a cesta.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABA 4: ESTRATÉGIA & FONTES ==================== -->
+    <section id="tab-estrategia" class="hidden space-y-6 fade-in">
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200">
+        <h2 class="text-lg font-extrabold text-dlNavy mb-1">Recomendações Executivas para Apresentação à Drogaleste</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mb-4">Quatro alavancas práticas extraídas do cruzamento entre avaliações reais, telemetria GPS e tendências IQVIA 2026.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-dlSoft border border-slate-200">
+            <div class="flex items-center gap-2 font-extrabold text-dlNavy text-sm mb-1.5">
+              <span class="w-6 h-6 rounded-full bg-dlBlue text-white inline-flex items-center justify-center text-xs">1</span>
+              Transformar o "Padrão Santos" no Benchmark do Estrela Botica
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Usar a operação da <strong>Drogaleste Santos (nota 5,0 · 166 aval.)</strong> e da <strong>Loja 19 Jd. Adutora (4,6 · 530 aval.)</strong> como matriz de auditoria do programa Estrela Botica em 2026.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-dlSoft border border-slate-200">
+            <div class="flex items-center gap-2 font-extrabold text-dlNavy text-sm mb-1.5">
+              <span class="w-6 h-6 rounded-full bg-dlRed text-white inline-flex items-center justify-center text-xs">2</span>
+              Blindar SLA do WhatsApp, Pix e Turno Noturno
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Os picos de GPS ocorrem entre 18h e 23h, e as avaliações críticas concentram-se em divergência de preço no WhatsApp, atrasos de entrega e Pix. Padronizar o SLA omnichannel eleva a nota média geral.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-dlSoft border border-slate-200">
+            <div class="flex items-center gap-2 font-extrabold text-dlNavy text-sm mb-1.5">
+              <span class="w-6 h-6 rounded-full bg-emerald-600 text-white inline-flex items-center justify-center text-xs">3</span>
+              Unir Liderança em Nutracêuticos (56%) ao Ciclo GLP-1
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Criar ilhas consultivas integrando canetas GLP-1 (Wegovy, Mounjaro, Ozempic) a proteínas, vitaminas e saúde gastrointestinal — categoria em forte aceleração até jun/2026 (IQVIA).</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-dlSoft border border-slate-200">
+            <div class="flex items-center gap-2 font-extrabold text-dlNavy text-sm mb-1.5">
+              <span class="w-6 h-6 rounded-full bg-amber-600 text-white inline-flex items-center justify-center text-xs">4</span>
+              Escalar Livva Farma com Inteligência de Fluxo GPS
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Na entrada coordenada da Livva Farma no Tatuapé e novas praças em 2027, priorizar esquinas com estacionamento próprio e alta densidade noturna (padrão validado no Tucuruvi e Santos).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-slate-200">
+        <h3 class="text-base font-extrabold text-dlNavy mb-3">Fontes Verificadas &amp; Metodologia</h3>
+        <ul class="space-y-2 text-xs sm:text-sm text-slate-700 list-disc pl-5">
+          <li><strong>Site Institucional &amp; Lojas:</strong> <a href="https://www.drogaleste.com.br/sobre-nos" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">drogaleste.com.br/sobre-nos</a> · <a href="https://www.drogaleste.com.br/nossas-lojas" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">drogaleste.com.br/nossas-lojas</a></li>
+          <li><strong>Expansão 2025/2026 &amp; CEO Thiago Sansana:</strong> <a href="https://panoramafarmaceutico.com.br/drogaleste-aposta-em-nova-marca-e-mais-pdvs/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Panorama Farmacêutico (23/12/2025 — 104 lojas, Livva Farma, Estrela Botica)</a> · <a href="https://panoramafarmaceutico.com.br/drogaleste-preve-dez-inauguracoes-em-2026/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Panorama Farmacêutico (11/06/2026 — 105 PDVs)</a></li>
+          <li><strong>Crescimento &amp; Participação por Categoria:</strong> <a href="https://exame.com/bussola/bussola-cia-drogaleste-consolida-expansao-de-sua-rede/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Exame (21/11/2024 — nutracêuticos 56%, idosos 45%, meta 125 lojas)</a> · <a href="https://guiadafarmacia.com.br/drogaleste-inaugura-loja-em-santos/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Guia da Farmácia (Santos, Out/2025)</a></li>
+          <li><strong>Quadro Societário &amp; Reputação:</strong> <a href="https://empresas.serasaexperian.com.br/consulta-gratis/DROGA-LESTE-LTDA-71813612000141" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Serasa Experian (CNPJ 71.813.612/0001-41)</a> · <a href="https://www.consultasocio.com/q/sa/simone-diacov-sansana" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">ConsultaSocio (QSA)</a> · <a href="https://grupoabcnews.com.br/noticia/15742/droga-leste-inaugura-sua-segunda-farmacia-em-diademan" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Grupo ABC News (Milton Sansana)</a> · <a href="https://www.reclameaqui.com.br/empresa/rede-droga-leste/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Reclame Aqui (RA 1000)</a></li>
+          <li><strong>Benchmarks Setoriais (2025–2026):</strong> <a href="https://ascoferj.com.br/noticias/pague-menos-acelera-eficiencia-com-ia-e-lanca-conceito-loja-4-0/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Ascoferj / Abrafarma (R$ 820 mil/mês)</a> · <a href="https://abradilan.com.br/mercado/fecofar-encerra-2025-com-faturamento-de-r-6-bilhoes/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">Abradilan / Fecofar (R$ 67 mil/mês)</a> · <a href="https://abradilan.com.br/mercado/estudo-revela-os-medicamentos-de-marca-mais-vendidos/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">IQVIA Top 5 Medicamentos</a> · <a href="https://panoramafarmaceutico.com.br/glp-1-cria-nova-jornada-de-consumo-nas-farmacias/" target="_blank" rel="noopener noreferrer" class="text-dlBlue underline">IQVIA GLP-1 &amp; Adjacentes</a>.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE DETALHES DA LOJA -->
+  <div id="store-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden fade-in">
+      <div class="bg-dlNavy text-white px-5 py-4 flex items-start justify-between gap-3">
+        <div>
+          <span id="modal-badge" class="inline-block text-[11px] font-bold uppercase px-2 py-0.5 rounded-full bg-dlRed mb-1">Destaque</span>
+          <h3 id="modal-title" class="text-lg font-extrabold leading-tight">Unidade</h3>
+          <p id="modal-city" class="text-xs text-blue-200 mt-0.5">São Paulo - SP</p>
+        </div>
+        <button type="button" id="btn-close-modal" class="text-white/80 hover:text-white p-1 rounded-lg hover:bg-white/10 transition" aria-label="Fechar modal">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-5 space-y-4 text-sm">
+        <div class="grid grid-cols-3 gap-2.5 text-center">
+          <div class="bg-dlSoft rounded-xl p-2.5 border border-slate-200">
+            <div class="text-[11px] text-slate-500 font-semibold">Nota Google</div>
+            <div id="modal-rating" class="text-lg font-extrabold text-dlRed">5,0 ★</div>
+          </div>
+          <div class="bg-dlSoft rounded-xl p-2.5 border border-slate-200">
+            <div class="text-[11px] text-slate-500 font-semibold">Avaliações</div>
+            <div id="modal-reviews" class="text-lg font-extrabold text-dlNavy">166</div>
+          </div>
+          <div class="bg-dlSoft rounded-xl p-2.5 border border-slate-200">
+            <div class="text-[11px] text-slate-500 font-semibold">Receita Est./Mês</div>
+            <div id="modal-revenue" class="text-base font-extrabold text-emerald-700">R$ 720k</div>
+          </div>
+        </div>
+
+        <div class="space-y-2 text-slate-700">
+          <div class="flex items-start gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-dlBlue shrink-0 mt-0.5"></i>
+            <span id="modal-address">Endereço completo</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <i data-lucide="clock" class="w-4 h-4 text-dlBlue shrink-0 mt-0.5"></i>
+            <span id="modal-hours">Horário</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <i data-lucide="phone" class="w-4 h-4 text-dlBlue shrink-0 mt-0.5"></i>
+            <span id="modal-phone">Telefone</span>
+          </div>
+          <div class="flex items-start gap-2 bg-blue-50/70 p-3 rounded-xl border border-blue-100">
+            <i data-lucide="activity" class="w-4 h-4 text-dlBlue shrink-0 mt-0.5"></i>
+            <div>
+              <div class="text-xs font-bold text-dlNavy">Fluxo GPS (Google Maps Popular Times)</div>
+              <p id="modal-gps" class="text-xs text-slate-700 mt-0.5">Padrão de fluxo</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+          <a id="modal-link" href="https://www.drogaleste.com.br/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold bg-dlBlue text-white px-4 py-2 rounded-xl hover:bg-dlNavy transition">
+            <span>Página da Unidade</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+          <button type="button" id="btn-close-modal-footer" class="text-xs font-bold text-slate-600 hover:text-slate-900 px-3 py-2">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-white border-t border-slate-200 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <span>Dossiê Executivo Rede Drogaleste · Dados públicos, Google Maps Popular Times &amp; Benchmarks Abrafarma/IQVIA (Nov/2026)</span>
+      <span>Estimativas de faturamento por loja são modelagens paramétricas indicativas (não auditadas).</span>
+    </div>
+  </footer>
+
+  <script>
+    const STORES = [
+      {
+        id: 1,
+        name: "Drogaleste Santos (Aparecida)",
+        city: "Santos – SP",
+        region: "gsp-litoral",
+        address: "Av. Bartholomeu de Gusmão, 131 – Aparecida, Santos – SP, 11045-401",
+        phone: "(13) 99617-7443",
+        rating: 5.0,
+        reviews: 166,
+        is24h: false,
+        hours: "Todos os dias: 07:00–00:00",
+        gps: "Picos recorrentes de seg a qua (tarde/noite) e sexta à noite; localização estratégica na orla de Santos (renda A–B).",
+        revMid: 720,
+        revRange: "R$ 645k – R$ 795k",
+        badge: "Melhor Nota SP (5,0 ★)",
+        url: "https://guiadafarmacia.com.br/drogaleste-inaugura-loja-em-santos/"
+      },
+      {
+        id: 2,
+        name: "Drogaleste Loja 19 – Jd. Adutora",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "Av. Sapopemba, 11030 – Jardim Adutora, São Paulo – SP, 03988-000",
+        phone: "(11) 94701-8348",
+        rating: 4.6,
+        reviews: 530,
+        is24h: true,
+        hours: "Atendimento 24 horas (todos os dias)",
+        gps: "Pico máximo ('as busy as it gets') todas as noites (seg–dom) e movimento constante nos fins de semana.",
+        revMid: 810,
+        revRange: "R$ 725k – R$ 895k",
+        badge: "Top 1 Capital SP",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-jd-adutora-19/contato/"
+      },
+      {
+        id: 3,
+        name: "Drogaleste Loja 3 – José Bonifácio",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "Av. Nagib Farah Maluf, 136 – Itaquera, São Paulo – SP, 08255-000",
+        phone: "(11) 94005-9814",
+        rating: 4.6,
+        reviews: 398,
+        is24h: false,
+        hours: "Seg–Sáb: 06:00–01:00 · Dom: 06:00–00:00",
+        gps: "Fluxo contínuo em bairro domiciliar histórico da rede; picos acentuados nas noites de terça e quinta.",
+        revMid: 680,
+        revRange: "R$ 610k – R$ 750k",
+        badge: "Top 3 Estado SP",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-cj-jose-bonifacio-3/contato/"
+      },
+      {
+        id: 4,
+        name: "Drogaleste Loja 78 – Tucuruvi",
+        city: "São Paulo – SP (Zona Norte)",
+        region: "capital",
+        address: "Av. Cel. Sezefredo Fagundes, 682 – Tucuruvi, São Paulo – SP, 02306-001",
+        phone: "(11) 96925-0678",
+        rating: 4.6,
+        reviews: 354,
+        is24h: true,
+        hours: "Atendimento 24 horas (todos os dias)",
+        gps: "Alta recorrência na Zona Norte; picos diários à tarde e noite (seg–qui, sáb e dom).",
+        revMid: 760,
+        revRange: "R$ 680k – R$ 840k",
+        badge: "Líder Zona Norte 24h",
+        url: "https://www.drogaleste.com.br/lojas/tucuruvi-78/contato/"
+      },
+      {
+        id: 5,
+        name: "Drogaleste Loja 6 – Jd. Vera Cruz",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "Av. Sapopemba, 13925 – Jd. Vera Cruz, São Paulo – SP, 03989-010",
+        phone: "(11) 94793-5967",
+        rating: 4.6,
+        reviews: 276,
+        is24h: false,
+        hours: "Todos os dias: 07:00–23:00",
+        gps: "Forte fidelização próxima ao Largo São Mateus; pico máximo sábado à tarde/noite e domingo à noite.",
+        revMid: 590,
+        revRange: "R$ 530k – R$ 650k",
+        badge: "Top 5 Estado SP",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-jd-vera-cruz-6/contato/"
+      },
+      {
+        id: 6,
+        name: "Drogaleste Loja 54 – Est. Guaianases",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "R. Hipólito de Camargo, 601 – Guaianases, São Paulo – SP, 08410-030",
+        phone: "(11) 94710-9399",
+        rating: 4.6,
+        reviews: 243,
+        is24h: true,
+        hours: "Ter–Sáb: 24h · Dom: 00h–21h · Seg: 07h–00h",
+        gps: "Alto fluxo pendular junto à Estação CPTM Guaianases; pico concentrado nas noites de quinta.",
+        revMid: 560,
+        revRange: "R$ 500k – R$ 620k",
+        badge: "Polo CPTM Guaianases",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-estacao-guaianazes-54/contato/"
+      },
+      {
+        id: 7,
+        name: "Drogaleste Loja 52 – Pq. Dourado",
+        city: "Ferraz de Vasconcelos – SP",
+        region: "gsp-litoral",
+        address: "Av. Gov. Jânio Quadros, 552 – Parque Dourado, Ferraz de Vasconcelos – SP",
+        phone: "(11) 96377-2725",
+        rating: 4.6,
+        reviews: 177,
+        is24h: false,
+        hours: "Seg–Sáb: 07:00–23:00 · Dom: 07:00–22:00",
+        gps: "Alta avaliação em delivery e atendimento farmacêutico; pico principal aos sábados à noite.",
+        revMid: 495,
+        revRange: "R$ 445k – R$ 545k",
+        badge: "Líder Alto Tietê",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-jardim-tango-52/contato/"
+      },
+      {
+        id: 8,
+        name: "Drogaleste Loja 10 – Av. Itaquera",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "Av. Itaquera, 3701 – Cidade Líder, São Paulo – SP, 03526-000",
+        phone: "(11) 94009-4583",
+        rating: 4.4,
+        reviews: 705,
+        is24h: true,
+        hours: "Atendimento 24 horas (todos os dias)",
+        gps: "Maior volume de fluxo e avaliações da rede (705); movimentada em dias úteis e fins de semana, pico seg–sex tarde e noite.",
+        revMid: 860,
+        revRange: "R$ 770k – R$ 950k",
+        badge: "Maior Fluxo & Receita",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-cidade-lider-10/contato/"
+      },
+      {
+        id: 9,
+        name: "Drogaleste Loja 14 – Itaquera",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "R. Antônio Moura Andrade, 340 – Itaquera, São Paulo – SP, 08210-660",
+        phone: "(11) 97396-0755",
+        rating: 4.5,
+        reviews: 191,
+        is24h: false,
+        hours: "Seg–Sáb: 07:00–23:00 · Dom: 08:00–22:00",
+        gps: "Fluxo constante ('usually a little busy') em dias úteis e fins de semana; picos seg a sáb à noite.",
+        revMid: 520,
+        revRange: "R$ 465k – R$ 575k",
+        badge: "Top 10 Capital",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-itaquera-14/contato/"
+      },
+      {
+        id: 10,
+        name: "Drogaleste – Cidade São Mateus",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "Av. Mateo Bei, 2351 – Cidade São Mateus, São Paulo – SP, 03942-012",
+        phone: "(11) 91240-0044",
+        rating: 4.5,
+        reviews: 178,
+        is24h: false,
+        hours: "Seg–Sáb: 07:00–23:00 · Dom: 08:00–22:00",
+        gps: "Forte corredor comercial da Av. Mateo Bei; acima da média ('busier than usual') com picos seg, ter e qui à noite.",
+        revMid: 515,
+        revRange: "R$ 460k – R$ 570k",
+        badge: "Top 10 Capital",
+        url: "https://www.drogaleste.com.br/"
+      },
+      {
+        id: 11,
+        name: "Drogaleste Loja 25 – Av. Imperador",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "Av. Imperador, 3752 – Limoeiro, São Paulo – SP, 08051-000",
+        phone: "(11) 97527-2428",
+        rating: 4.4,
+        reviews: 330,
+        is24h: true,
+        hours: "Ter–Sáb: 24h · Dom: 00h–21h · Seg: 07h–00h",
+        gps: "Corredor viário estratégico da Zona Leste; picos noturnos diários de segunda a sábado.",
+        revMid: 650,
+        revRange: "R$ 585k – R$ 715k",
+        badge: "Top 10 Capital",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-av.-imperador-25/contato/"
+      },
+      {
+        id: 12,
+        name: "Drogaleste Loja 11 – Teotônio Vilela",
+        city: "São Paulo – SP (Zona Leste)",
+        region: "capital",
+        address: "Av. Arq. Vilanova Artigas, 1199 – Conj. Teotônio Vilela, São Paulo – SP",
+        phone: "(11) 94082-9453",
+        rating: 4.4,
+        reviews: 265,
+        is24h: true,
+        hours: "Atendimento 24 horas (todos os dias)",
+        gps: "Alta densidade habitacional; pico máximo ('as busy as it gets') todas as noites da semana.",
+        revMid: 620,
+        revRange: "R$ 555k – R$ 685k",
+        badge: "24h Alta Densidade",
+        url: "https://www.drogaleste.com.br/lojas/sp-sao-paulo-cj-teotonio-vilela-11/contato/"
+      },
+      {
+        id: 13,
+        name: "Drogaleste Loja 44 – Carapicuíba",
+        city: "Carapicuíba – SP",
+        region: "gsp-litoral",
+        address: "Av. Antonio Faustino dos Santos, 330 – Vila Municipal, Carapicuíba – SP",
+        phone: "(11) 99882-4397",
+        rating: 4.5,
+        reviews: 136,
+        is24h: false,
+        hours: "Todos os dias: 07:00–23:00",
+        gps: "Movimento concentrado nos fins de semana (picos sábado e domingo à noite).",
+        revMid: 470,
+        revRange: "R$ 420k – R$ 520k",
+        badge: "Destaque Oeste GSP",
+        url: "https://www.drogaleste.com.br/lojas/carapicuiba-44/contato/"
+      },
+      {
+        id: 14,
+        name: "Drogaleste Loja 60 – Estação Itaquá",
+        city: "Itaquaquecetuba – SP",
+        region: "gsp-litoral",
+        address: "Av. Ítalo Adami, 750 – Vila Zeferina, Itaquaquecetuba – SP, 08574-020",
+        phone: "(11) 97586-2116",
+        rating: 4.5,
+        reviews: 120,
+        is24h: false,
+        hours: "Seg–Sáb: 07:00–00:00 · Dom: 07:00–22:00",
+        gps: "Fluxo constante em dias úteis e fins de semana; picos ter, qua, sex tarde/noite e sáb noite.",
+        revMid: 485,
+        revRange: "R$ 435k – R$ 535k",
+        badge: "Líder Itaquá",
+        url: "https://www.drogaleste.com.br/lojas/sp-itaquaquecetuba-estacao-itaqua-60/contato/"
+      },
+      {
+        id: 15,
+        name: "Drogaleste Loja 109 – Pq. São Miguel",
+        city: "Guarulhos – SP",
+        region: "gsp-litoral",
+        address: "Estr. Pres. Juscelino K. de Oliveira, 3043 – Pq. São Miguel, Guarulhos – SP",
+        phone: "(11) 98236-4876",
+        rating: 5.0,
+        reviews: 15,
+        is24h: false,
+        hours: "Todos os dias: 07:00–23:00",
+        gps: "Unidade recente em Guarulhos com nota máxima inicial (5,0) e fluxo constante em dias úteis.",
+        revMid: 460,
+        revRange: "R$ 415k – R$ 505k",
+        badge: "Nova 5,0 ★ (15 aval.)",
+        url: "https://www.drogaleste.com.br/"
+      }
+    ];
+
+    // Bayesian Score: (v / (v + m)) * R + (m / (v + m)) * C
+    const GLOBAL_MEAN = 4.42;
+    const MIN_VOTES = 100;
+    STORES.forEach(s => {
+      s.bayesScore = ((s.reviews / (s.reviews + MIN_VOTES)) * s.rating) + ((MIN_VOTES / (s.reviews + MIN_VOTES)) * GLOBAL_MEAN);
+    });
+
+    const state = {
+      activeTab: 'visao-geral',
+      regionFilter: 'all',
+      only24h: false,
+      sortBy: 'score',
+      searchQuery: '',
+      simGps: 1.25,
+      simHours: 1.25,
+      simMix: 1.10,
+      chartsReady: false
+    };
+
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabId);
+      });
+
+      if (tabId === 'faturamento' && !state.chartsReady) {
+        initCharts();
+        state.chartsReady = true;
+      }
+    }
+
+    function renderPodium() {
+      const podiumIds = [1, 2, 8];
+      const labels = [
+        { tag: "Melhor Nota Consolidada SP", color: "border-amber-400 bg-amber-50/50", badge: "bg-amber-500 text-white" },
+        { tag: "Melhor Avaliada na Capital", color: "border-dlBlue bg-blue-50/40", badge: "bg-dlBlue text-white" },
+        { tag: "Maior Fluxo GPS & Receita Est.", color: "border-dlRed bg-red-50/40", badge: "bg-dlRed text-white" }
+      ];
+      const container = document.getElementById('podium-cards');
+      container.innerHTML = podiumIds.map((id, idx) => {
+        const s = STORES.find(x => x.id === id);
+        const cfg = labels[idx];
+        return `
+          <button type="button" data-open-store="${s.id}" class="text-left rounded-2xl p-4 border-2 ${cfg.color} hover:shadow-md transition flex flex-col justify-between gap-3">
+            <div>
+              <span class="inline-block text-[11px] font-bold uppercase px-2.5 py-0.5 rounded-full ${cfg.badge} mb-2">${cfg.tag}</span>
+              <h3 class="text-base font-extrabold text-dlNavy">${s.name}</h3>
+              <p class="text-xs text-slate-600 mt-0.5">${s.address}</p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-200/80 text-xs">
+              <span class="font-extrabold text-dlRed text-sm">${s.rating.toFixed(1).replace('.', ',')} ★ <span class="text-slate-500 font-semibold">(${s.reviews} aval.)</span></span>
+              <span class="font-bold text-emerald-700">~R$ ${s.revMid}k/mês</span>
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function getFilteredStores() {
+      const q = state.searchQuery.trim().toLowerCase();
+      let list = STORES.filter(s => {
+        if (state.regionFilter !== 'all' && s.region !== state.regionFilter) return false;
+        if (state.only24h && !s.is24h) return false;
+        if (q) {
+          const hay = (s.name + ' ' + s.city + ' ' + s.address + ' ' + s.badge).toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      list.sort((a, b) => {
+        if (state.sortBy === 'rating') return (b.rating - a.rating) || (b.reviews - a.reviews);
+        if (state.sortBy === 'reviews') return b.reviews - a.reviews;
+        if (state.sortBy === 'revenue') return b.revMid - a.revMid;
+        return b.bayesScore - a.bayesScore;
+      });
+      return list;
+    }
+
+    function renderRanking() {
+      const list = getFilteredStores();
+      document.getElementById('results-count').textContent = `Mostrando ${list.length} de ${STORES.length} unidades auditadas`;
+      const tbody = document.getElementById('ranking-tbody');
+
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="8" class="py-8 text-center text-slate-500 text-sm">Nenhuma unidade encontrada com os filtros atuais.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map((s, idx) => `
+        <tr class="hover:bg-blue-50/50 transition">
+          <td class="py-3 px-3 font-extrabold text-dlNavy whitespace-nowrap">${idx + 1}º</td>
+          <td class="py-3 px-3">
+            <div class="font-bold text-slate-900">${s.name}</div>
+            <div class="flex flex-wrap items-center gap-1.5 mt-0.5">
+              <span class="text-xs text-slate-500">${s.city}</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-dlBlue">${s.badge}</span>
+            </div>
+          </td>
+          <td class="py-3 px-3 text-xs text-slate-600 max-w-xs">${s.address}</td>
+          <td class="py-3 px-3 text-right font-extrabold ${s.rating >= 4.9 ? 'text-dlRed' : 'text-dlNavy'} whitespace-nowrap">${s.rating.toFixed(1).replace('.', ',')} ★</td>
+          <td class="py-3 px-3 text-right font-semibold text-slate-700">${s.reviews}</td>
+          <td class="py-3 px-3 whitespace-nowrap">
+            ${s.is24h
+              ? '<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">24 horas</span>'
+              : '<span class="text-[11px] font-semibold text-slate-600">Estendido</span>'}
+          </td>
+          <td class="py-3 px-3 text-right whitespace-nowrap">
+            <div class="font-bold text-emerald-700">R$ ${s.revMid}k</div>
+            <div class="text-[11px] text-slate-400">${s.revRange}</div>
+          </td>
+          <td class="py-3 px-3 text-center">
+            <button type="button" data-open-store="${s.id}" class="text-xs font-bold text-dlBlue hover:text-white hover:bg-dlBlue border border-dlBlue px-2.5 py-1 rounded-lg transition">Ver</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function openStoreModal(storeId) {
+      const s = STORES.find(x => x.id === Number(storeId));
+      if (!s) return;
+      document.getElementById('modal-badge').textContent = s.badge;
+      document.getElementById('modal-title').textContent = s.name;
+      document.getElementById('modal-city').textContent = s.city;
+      document.getElementById('modal-rating').textContent = s.rating.toFixed(1).replace('.', ',') + ' ★';
+      document.getElementById('modal-reviews').textContent = s.reviews;
+      document.getElementById('modal-revenue').textContent = 'R$ ' + s.revMid + 'k';
+      document.getElementById('modal-address').textContent = s.address;
+      document.getElementById('modal-hours').textContent = s.hours;
+      document.getElementById('modal-phone').textContent = s.phone;
+      document.getElementById('modal-gps').textContent = s.gps;
+      document.getElementById('modal-link').href = s.url;
+      document.getElementById('store-modal').classList.remove('hidden');
+    }
+
+    function closeStoreModal() {
+      document.getElementById('store-modal').classList.add('hidden');
+    }
+
+    function updateSimulator() {
+      const base = 450;
+      const monthly = Math.round(base * state.simGps * state.simHours * state.simMix);
+      const low = Math.round(monthly * 0.90);
+      const high = Math.round(monthly * 1.10);
+      const annual = (monthly * 12 / 1000).toFixed(2).replace('.', ',');
+      const pctAbrafarma = Math.round((monthly / 820) * 100);
+
+      const gpsLabel = state.simGps >= 1.35 ? 'Muito Alto' : state.simGps >= 1.15 ? 'Alto' : state.simGps >= 1.0 ? 'Moderado' : 'Bairro';
+      document.getElementById('sim-gps-val').textContent = `${state.simGps.toFixed(2)}x (${gpsLabel})`;
+      document.getElementById('sim-mix-val').textContent = `${state.simMix.toFixed(2)}x`;
+      const hrsLabel = state.simHours >= 1.25 ? '24 horas' : state.simHours >= 1.10 ? 'Estendido' : '16h Padrão';
+      document.getElementById('sim-hours-val').textContent = `${state.simHours.toFixed(2)}x (${hrsLabel})`;
+
+      document.getElementById('sim-monthly').textContent = `R$ ${monthly} mil/mês`;
+      document.getElementById('sim-range').textContent = `Faixa provável (±10%): R$ ${low}k – R$ ${high}k/mês`;
+      document.getElementById('sim-annual').textContent = `R$ ${annual} mi`;
+      document.getElementById('sim-abrafarma').textContent = `${pctAbrafarma}%`;
+    }
+
+    function initCharts() {
+      const topRev = [...STORES].sort((a, b) => b.revMid - a.revMid).slice(0, 10);
+      new Chart(document.getElementById('chart-revenue'), {
+        type: 'bar',
+        data: {
+          labels: topRev.map(s => s.name.replace('Drogaleste ', '')),
+          datasets: [
+            {
+              label: 'Faturamento Est. (R$ mil/mês)',
+              data: topRev.map(s => s.revMid),
+              backgroundColor: topRev.map(s => s.revMid >= 720 ? '#004A99' : '#3B82F6'),
+              borderRadius: 6
+            },
+            {
+              label: 'Média Abrafarma (R$ 820k)',
+              data: topRev.map(() => 820),
+              type: 'line',
+              borderColor: '#D9232E',
+              borderDash: [6, 4],
+              borderWidth: 2,
+              pointRadius: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+          scales: { x: { beginAtZero: true, max: 980 } }
+        }
+      });
+
+      new Chart(document.getElementById('chart-iqvia'), {
+        type: 'bar',
+        data: {
+          labels: ['Wegovy (GLP-1)', 'Forxiga (Diabetes)', 'Mounjaro (GLP-1)', 'Ozempic (GLP-1)', 'Glifage (Diabetes)'],
+          datasets: [{
+            label: 'Receita Anual no Varejo BR (R$ bi)',
+            data: [3.8, 2.1, 1.9, 1.8, 1.3],
+            backgroundColor: ['#D9232E', '#0A2E5C', '#004A99', '#1D4ED8', '#3B82F6'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, max: 4.4 } }
+        }
+      });
+    }
+
+    // Event bindings
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    document.getElementById('btn-go-ranking').addEventListener('click', () => switchTab('ranking'));
+
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      state.searchQuery = e.target.value;
+      renderRanking();
+    });
+
+    document.querySelectorAll('.region-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.regionFilter = btn.dataset.region;
+        document.querySelectorAll('.region-btn').forEach(b => {
+          const active = b.dataset.region === state.regionFilter;
+          b.className = active
+            ? 'region-btn flex-1 text-xs font-bold py-1.5 px-2 rounded-lg bg-white text-dlNavy shadow-sm transition'
+            : 'region-btn flex-1 text-xs font-bold py-1.5 px-2 rounded-lg text-slate-600 transition';
+        });
+        renderRanking();
+      });
+    });
+
+    document.getElementById('sort-select').addEventListener('change', (e) => {
+      state.sortBy = e.target.value;
+      renderRanking();
+    });
+
+    document.getElementById('toggle-24h').addEventListener('change', (e) => {
+      state.only24h = e.target.checked;
+      renderRanking();
+    });
+
+    document.getElementById('btn-reset-filters').addEventListener('click', () => {
+      state.regionFilter = 'all';
+      state.only24h = false;
+      state.sortBy = 'score';
+      state.searchQuery = '';
+      document.getElementById('search-input').value = '';
+      document.getElementById('sort-select').value = 'score';
+      document.getElementById('toggle-24h').checked = false;
+      document.querySelectorAll('.region-btn').forEach(b => {
+        const active = b.dataset.region === 'all';
+        b.className = active
+          ? 'region-btn flex-1 text-xs font-bold py-1.5 px-2 rounded-lg bg-white text-dlNavy shadow-sm transition'
+          : 'region-btn flex-1 text-xs font-bold py-1.5 px-2 rounded-lg text-slate-600 transition';
+      });
+      renderRanking();
+    });
+
+    document.getElementById('sim-gps').addEventListener('input', (e) => {
+      state.simGps = parseFloat(e.target.value);
+      updateSimulator();
+    });
+
+    document.getElementById('sim-mix').addEventListener('input', (e) => {
+      state.simMix = parseFloat(e.target.value);
+      updateSimulator();
+    });
+
+    document.querySelectorAll('.hours-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.simHours = parseFloat(btn.dataset.hours);
+        document.querySelectorAll('.hours-btn').forEach(b => {
+          const active = parseFloat(b.dataset.hours) === state.simHours;
+          b.className = active
+            ? 'hours-btn py-2 px-3 rounded-xl text-xs font-bold border-2 border-dlBlue bg-blue-50 text-dlBlue transition'
+            : 'hours-btn py-2 px-3 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition';
+        });
+        updateSimulator();
+      });
+    });
+
+    // Delegated click for opening store modals
+    document.body.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-open-store]');
+      if (trigger) {
+        openStoreModal(trigger.dataset.openStore);
+      }
+    });
+
+    document.getElementById('btn-close-modal').addEventListener('click', closeStoreModal);
+    document.getElementById('btn-close-modal-footer').addEventListener('click', closeStoreModal);
+    document.getElementById('store-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'store-modal') closeStoreModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeStoreModal();
+    });
+
+    // Init
+    renderPodium();
+    renderRanking();
+    updateSimulator();
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
